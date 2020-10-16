@@ -1,0 +1,13 @@
+<ul class="list-group-flush latest-post">
+    {% for post in l_posts %}
+        <li class="list-group-item latest-post-item">
+            <a href="{% url 'detail' post.pk %}" class="text-dark">
+                {% if post.title|length > 40 %}
+                    {{post.title|slice:'40'}} ..
+                {% else %}
+                    {{post.title}}
+                {% endif %}
+            </a>
+        </li>
+    {% endfor %}
+</ul>

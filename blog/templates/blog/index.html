@@ -1,0 +1,22 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+    <!-- {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{message.tags}}">{{message}}</div>
+        {% endfor %}
+    {% endif %} -->
+
+    {% for post in posts %}
+        <div class="post p-3 m-3">
+            <img class="ing-fluid" width="70px" src="{{post.author.profile.image.url}}" alt="صورة الناشر">
+            <h3><a href="{% url 'detail' post.pk %}" class="text-dark">{{post.title}}</a></h3>
+            <span>نشر في {{post.post_date | date:"d-m-Y"}}</span>
+            <p>{{post.content}}</p>
+        </div>
+    {% endfor %}
+
+    {% include 'blog/pagination.html' with page=posts %}
+
+{% endblock content %}
